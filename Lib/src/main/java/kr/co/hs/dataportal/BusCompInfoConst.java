@@ -6,22 +6,9 @@ package kr.co.hs.dataportal;
  * 패키지명 : kr.co.hs.dataportal
  */
 
-public interface BusCompInfoConst {
-    String SERVICE_RESULT = "ServiceResult";
-    String COM_MESSAGE_HEADER = "comMsgHeader";
-    String MESSAGE_HEADER = "msgHeader";
-    String CURRENT_PAGE = "currentPage";
-    String HEADER_CODE = "headerCd";
-    String HEADER_MESSAGE = "headerMsg";
-    String ITEM_COUNT = "itemCnt";
-    String ITEM_PAGE_COUNT = "itemPageCnt";
-
-    String MESSAGE_BODY = "msgBody";
-    String ITEM_LIST = "itemList";
-
+public interface BusCompInfoConst extends ApiConst {
     String ADDRESS = "ADDR1";
     String COMPANY_CODE = "COMP_CD";
     String COMPANY_NAME = "COMP_NM";
     String TELEPHONE_NUMBER = "TEL_NO";
-
 }
