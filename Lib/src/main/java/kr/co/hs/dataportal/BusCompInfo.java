@@ -17,7 +17,7 @@ import kr.co.hs.net.HsSaxHandler;
  * 패키지명 : kr.co.hs.dataportal
  */
 
-public class BusCompInfo extends HsSaxHandler{
+public class BusCompInfo extends HsSaxHandler implements BusCompInfoConst{
     private String mStrAPIKey = null;
     private int mNReqestPage = 0;
 
@@ -39,6 +39,9 @@ public class BusCompInfo extends HsSaxHandler{
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         super.startElement(uri, localName, qName, attributes);
+        if(qName.equals(ITEM_LIST)){
+
+        }
     }
 
     @Override
@@ -49,5 +52,36 @@ public class BusCompInfo extends HsSaxHandler{
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         super.endElement(uri, localName, qName);
+    }
+
+
+    public static final class Item{
+        private String mAddress;
+        private String mCompanyCode;
+        private String mCompanyName;
+        private String mTel;
+
+        public Item(String address, String companyCode, String companyName, String tel) {
+            mAddress = address;
+            mCompanyCode = companyCode;
+            mCompanyName = companyName;
+            mTel = tel;
+        }
+
+        public String getAddress() {
+            return mAddress;
+        }
+
+        public String getCompanyCode() {
+            return mCompanyCode;
+        }
+
+        public String getCompanyName() {
+            return mCompanyName;
+        }
+
+        public String getTel() {
+            return mTel;
+        }
     }
 }
