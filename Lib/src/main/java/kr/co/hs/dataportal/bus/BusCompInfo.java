@@ -1,7 +1,9 @@
-package kr.co.hs.dataportal;
+package kr.co.hs.dataportal.bus;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import kr.co.hs.dataportal.Api;
 
 /**
  * 생성된 시간 2017-01-16, Bae 에 의해 생성됨

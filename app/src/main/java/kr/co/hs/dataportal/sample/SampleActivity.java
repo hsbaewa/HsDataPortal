@@ -9,7 +9,7 @@ import java.util.List;
 
 
 import kr.co.hs.app.HsActivity;
-import kr.co.hs.dataportal.BusCompInfo;
+import kr.co.hs.dataportal.bus.BusCompInfo;
 
 /**
  * 생성된 시간 2017-01-16, Bae 에 의해 생성됨
@@ -39,6 +39,9 @@ public class SampleActivity extends HsActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
+//                http://openapitraffic.daejeon.go.kr/api/rest/busRouteInfo/getStaionByRouteAll?serviceKey=QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D&reqPage=1
             }
         }).start();
 

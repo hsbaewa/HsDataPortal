@@ -1,4 +1,6 @@
-package kr.co.hs.dataportal;
+package kr.co.hs.dataportal.bus;
+
+import kr.co.hs.dataportal.ApiConst;
 
 /**
  * 생성된 시간 2017-01-16, Bae 에 의해 생성됨
