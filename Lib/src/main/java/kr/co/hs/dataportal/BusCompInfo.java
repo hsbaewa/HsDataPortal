@@ -1,21 +1,7 @@
 package kr.co.hs.dataportal;
 
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-import org.xml.sax.helpers.DefaultHandler;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import kr.co.hs.net.HsRestClient;
-import kr.co.hs.net.HsSaxHandler;
-import kr.co.hs.util.Logger;
 
 /**
  * 생성된 시간 2017-01-16, Bae 에 의해 생성됨
@@ -23,42 +9,46 @@ import kr.co.hs.util.Logger;
  * 패키지명 : kr.co.hs.dataportal
  */
 
-public class BusCompInfo extends HsSaxHandler implements BusCompInfoConst{
-    private String mStrAPIKey = null;
+public class BusCompInfo<I extends BusCompInfo.Item> extends Api implements BusCompInfoConst{
     private int mNReqestPage = 0;
 
     private Item mCurrentItem = null;
     private List<Item> mItems;
 
     public BusCompInfo(String strAPIKey, int NReqestPage) {
-        mStrAPIKey = strAPIKey;
+        super(strAPIKey);
         mNReqestPage = NReqestPage;
         mItems = new ArrayList<>();
     }
 
-    public BusCompInfo request() throws IOException, SAXException, ParserConfigurationException {
+    @Override
+    public String getUrl() {
         String url = "http://openapitraffic.daejeon.go.kr/api/rest/buscompinfo/getBusCompInfo?serviceKey=%s&reqPage=%d";
-        url = String.format(url, mStrAPIKey, mNReqestPage);
+        url = String.format(url, getApiKey(), mNReqestPage);
+        return url;
+    }
 
-        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-        SAXParser parser = saxParserFactory.newSAXParser();
-        parser.parse(url , this);
-
-        return this;
+    public List<Item> getItems() {
+        return mItems;
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        super.startElement(uri, localName, qName, attributes);
-        if(qName.equals(ITEM_LIST)){
-            mCurrentItem = new Item();
+    public void startElement(String qName) {
+        switch (qName){
+            case ITEM_LIST:{
+                mCurrentItem = new Item();
+                break;
+            }
         }
     }
 
-
     @Override
-    public void doElement(String key, String value) {
-        switch (key){
+    public void endElement(String qName, String value) {
+        switch (qName){
+            case ITEM_LIST:{
+                mItems.add(mCurrentItem);
+                break;
+            }
             case ADDRESS:{
                 mCurrentItem.setAddress(value);
                 break;
@@ -78,33 +68,13 @@ public class BusCompInfo extends HsSaxHandler implements BusCompInfoConst{
         }
     }
 
-    @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
-        super.endElement(uri, localName, qName);
-        if(qName.equals(ITEM_LIST)){
-            mItems.add(mCurrentItem);
-            mCurrentItem = null;
-        }
-    }
-
-    public List<Item> getItems() {
-        return mItems;
-    }
-
-    public static final class Item{
+    public static final class Item extends Api.Item{
         private String mAddress;
         private String mCompanyCode;
         private String mCompanyName;
         private String mTel;
 
         public Item() {
-        }
-
-        public Item(String address, String companyCode, String companyName, String tel) {
-            mAddress = address;
-            mCompanyCode = companyCode;
-            mCompanyName = companyName;
-            mTel = tel;
         }
 
         public String getAddress() {
