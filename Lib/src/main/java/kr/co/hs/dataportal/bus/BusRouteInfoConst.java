@@ -26,13 +26,12 @@ public interface BusRouteInfoConst {
     String ALLO_INTERVAL_SUN = "ALLO_INTERVAL_SUN";     //공휴일 배차간격
     String BUSSTOP_COUNT = "BUSSTOP_CNT";               //정류장 갯수
     String END_NODE_ID = "END_NODE_ID";                 //종점 정류소 아이디
-
-//    <END_NODE_ID>8002737</END_NODE_ID>
-//    <END_STOP_ID>42750</END_STOP_ID>
-//    <ORIGIN_END>2230</ORIGIN_END>
-//    <ORIGIN_END_SAT>2230</ORIGIN_END_SAT>
-//    <ORIGIN_END_SUN>2230</ORIGIN_END_SUN>
-//    <ORIGIN_START>0630</ORIGIN_START>
+    String END_STOP_ID = "END_STOP_ID";                  //종점 정류소 아이디
+    String ORIGIN_END = "ORIGIN_END";                   //평일 기점 막차시간
+    String ORIGIN_END_SAT = "ORIGIN_END_SAT";           //토요일 기점 막차시간
+    String ORIGIN_END_SUN = "ORIGIN_END_SUN";           //일요일 종점 막차시간
+    String ORIGIN_START = "ORIGIN_START";               //평일 기점 첫차시간
+    String ORIGIN_START_SAT = "ORIGIN_START_SAT";       //토요일 기점 첫차시간
 //    <ORIGIN_START_SAT>0630</ORIGIN_START_SAT>
 //    <ORIGIN_START_SUN>0630</ORIGIN_START_SUN>
 //    <ROUTE_CD>30300001</ROUTE_CD>
