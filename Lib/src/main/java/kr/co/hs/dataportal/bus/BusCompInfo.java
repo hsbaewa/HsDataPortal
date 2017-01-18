@@ -24,9 +24,14 @@ public class BusCompInfo<I extends BusCompInfo.Item> extends Api implements BusC
     }
 
     @Override
+    public String getOperation() {
+        return OPERATION_BUS_COMPANY_INFO;
+    }
+
+    @Override
     public String getUrl() {
-        String url = "http://openapitraffic.daejeon.go.kr/api/rest/buscompinfo/getBusCompInfo?serviceKey=%s&reqPage=%d";
-        url = String.format(url, getApiKey(), mNReqestPage);
+        String url = "http://openapitraffic.daejeon.go.kr/api/rest/buscompinfo/%s?serviceKey=%s&reqPage=%d";
+        url = String.format(url, getOperation(), getApiKey(), mNReqestPage);
         return url;
     }
 

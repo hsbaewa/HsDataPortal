@@ -9,6 +9,9 @@ import kr.co.hs.dataportal.ApiConst;
  */
 
 public interface BusCompInfoConst extends ApiConst {
+
+    String OPERATION_BUS_COMPANY_INFO = "getBusCompInfo";
+
     String ADDRESS = "ADDR1";
     String COMPANY_CODE = "COMP_CD";
     String COMPANY_NAME = "COMP_NM";

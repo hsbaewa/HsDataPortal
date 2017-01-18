@@ -136,6 +136,7 @@ public abstract class Api<I extends Api.Item> extends DefaultHandler implements 
     }
 
 
+    public abstract String getOperation();
     public abstract String getUrl();
     public abstract List<I> getItems();
     public abstract void startElement(String tag);
