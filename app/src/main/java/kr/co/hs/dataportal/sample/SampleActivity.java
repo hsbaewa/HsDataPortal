@@ -72,6 +72,7 @@ public class SampleActivity extends HsActivity {
                         "8001378"
                 );
 
+
                 try {
                     stationInfo.request();
                     List<StationInfo.StationInfoItem> list = stationInfo.getItems();

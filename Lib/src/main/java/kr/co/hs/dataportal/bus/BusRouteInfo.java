@@ -13,6 +13,7 @@ public class BusRouteInfo<T extends BusRouteInfo.RouteItem> extends Api implemen
 
     private String mOperation;
     private int mReqPage;
+    private String mID;
     private List<T> mItems;
     private RouteItem mCurrentItem;
 
@@ -23,10 +24,23 @@ public class BusRouteInfo<T extends BusRouteInfo.RouteItem> extends Api implemen
         this.mItems = new ArrayList<>();
     }
 
+    public BusRouteInfo(String strAPIKey, String operation, String id) {
+        super(strAPIKey);
+        this.mOperation = operation;
+        this.mID = id;
+        this.mItems = new ArrayList<>();
+    }
+
     @Override
     public String getUrl() {
-        String url = "http://openapitraffic.daejeon.go.kr/api/rest/busRouteInfo/%s?serviceKey=%s&reqPage=%d";
-        url = String.format(url, getOperation(), getApiKey(), getReqPage());
+        String url = null;
+        if(getOperation().equals(OPERATION_ROUTE_INFO_ALL) || getOperation().equals(OPERATION_STATION_BY_ROUTE_ALL)){
+            url = "http://openapitraffic.daejeon.go.kr/api/rest/busRouteInfo/%s?serviceKey=%s&reqPage=%d";
+            url = String.format(url, getOperation(), getApiKey(), getReqPage());
+        }else if(getOperation().equals(OPERATION_ROUTE_INFO) || getOperation().equals(OPERATION_STATION_BY_ROUTE)){
+            url = "http://openapitraffic.daejeon.go.kr/api/rest/busRouteInfo/%s?serviceKey=%s&busRouteId=%s";
+            url = String.format(url, getOperation(), getApiKey(), getID());
+        }
         return url;
     }
 
@@ -295,10 +309,9 @@ public class BusRouteInfo<T extends BusRouteInfo.RouteItem> extends Api implemen
         return mReqPage;
     }
 
-
-
-
-
+    public String getID() {
+        return mID;
+    }
 
     public static class RouteItem extends Item{
         String mRouteCode;
