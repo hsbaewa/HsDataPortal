@@ -1,5 +1,7 @@
 # HsDataPortal
 
+[![](https://jitpack.io/v/hsbaewa/HsDataPortal.svg)](https://jitpack.io/#hsbaewa/HsDataPortal)
+
 정부 공공 데이터 포털(http://www.data.go.kr)에서 대전 버스 정보 API를 참조하여 쉽게 사용할 수 있도록 제작된 라이브러리 입니다.
 
 자세한 사항은 아래의 링크를 참고하세요.
