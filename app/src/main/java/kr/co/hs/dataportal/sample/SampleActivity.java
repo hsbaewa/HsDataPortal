@@ -29,25 +29,19 @@ public class SampleActivity extends HsActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        http://openapitraffic.daejeon.go.kr/api/rest/buscompinfo/getBusCompInfo?serviceKey=QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D&reqPage=1
-
-//        HsRestClient client = new HsRestClient();
-//        client.get()
-
         new Thread(new Runnable() {
             @Override
             public void run() {
-                BusCompInfo info = new BusCompInfo("QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D", 1);
+                BusCompInfo info = new BusCompInfo("API 키", 1);
                 try {
                     info.request();
                     List<BusCompInfo.Item> items = info.getItems();
-                    Log.d("a","a");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 BusRouteInfo<BusRouteInfo.RouteInfoItem> routeInfo = new BusRouteInfo(
-                        "QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D",
+                        "API 키",
                         BusRouteInfo.OPERATION_ROUTE_INFO_ALL,
                         2
                 );
@@ -55,13 +49,12 @@ public class SampleActivity extends HsActivity {
                     routeInfo.request();
                     List<BusRouteInfo.RouteInfoItem> list = routeInfo.getItems();
                     String count = routeInfo.getItemCount();
-                    Logger.d("a");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 BusRegInfo busRegInfo = new BusRegInfo(
-                        "QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D",
+                        "API 키",
                         1
                 );
 
@@ -74,7 +67,7 @@ public class SampleActivity extends HsActivity {
                 }
 
                 StationInfo stationInfo = new StationInfo(
-                        "QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D",
+                        "API 키",
                         StationInfo.OPERATION_STATION_BY_STOP_ID,
                         "8001378"
                 );
@@ -89,7 +82,7 @@ public class SampleActivity extends HsActivity {
 
 
                 BusPosInfo busPosInfo = new BusPosInfo(
-                        "QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D",
+                        "API 키",
                         "30300001"
                 );
 
@@ -102,7 +95,7 @@ public class SampleActivity extends HsActivity {
                 }
 
                 Arrive arrive = new Arrive(
-                        "QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D",
+                        "API 키",
                         Arrive.OPERATION_ARRIVE_INFO_BY_STOP_ID,
                         "8001378"
                 );
