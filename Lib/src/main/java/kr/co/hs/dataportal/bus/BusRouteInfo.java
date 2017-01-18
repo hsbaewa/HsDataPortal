@@ -8,30 +8,22 @@ import kr.co.hs.dataportal.Api;
  * Created by Bae on 2017-01-17.
  */
 
-public class BusRouteInfo extends Api {
+public class BusRouteInfo extends Api implements BusRouteInfoConst{
 
-//    <BUSSTOP_ENG_NM>
-//    Chungnam National University, College of Agricultural College Terminal
-//            </BUSSTOP_ENG_NM>
-//    <BUSSTOP_NM>충대농대종점</BUSSTOP_NM>
-//    <BUSSTOP_SEQ>1</BUSSTOP_SEQ>
-//    <BUSSTOP_TP>1</BUSSTOP_TP>
-//    <BUS_NODE_ID>8002736</BUS_NODE_ID>
-//    <BUS_STOP_ID>42740</BUS_STOP_ID>
-//    <GPS_LATI>36.3661</GPS_LATI>
-//    <GPS_LONG>127.351875</GPS_LONG>
-//    <ROAD_NM></ROAD_NM>
-//    <ROAD_NM_ADDR></ROAD_NM_ADDR>
-//    <ROUTE_CD>30300001</ROUTE_CD>
-//    <TOTAL_DIST>148</TOTAL_DIST>
+    private String mOperation;
+    private int mReqPage;
 
-    public BusRouteInfo(String strAPIKey) {
+    public BusRouteInfo(String strAPIKey, String operation, int reqPage) {
         super(strAPIKey);
+        this.mOperation = operation;
+        this.mReqPage = reqPage;
     }
 
     @Override
     public String getUrl() {
-        return null;
+        String url = "http://openapitraffic.daejeon.go.kr/api/rest/busRouteInfo/%s?serviceKey=%s&reqPage=%d";
+        url = String.format(url, getOperation(), getApiKey(), getReqPage());
+        return url;
     }
 
     @Override
@@ -46,6 +38,41 @@ public class BusRouteInfo extends Api {
 
     @Override
     public void endElement(String tag, String value) {
+
+    }
+
+    public String getOperation() {
+        return mOperation;
+    }
+
+    public int getReqPage() {
+        return mReqPage;
+    }
+
+
+
+
+
+
+    public static class RouteItem extends Item{
+
+    }
+
+    public static final class StationByRouteItem extends RouteItem{
+        String mBusStopEngName;
+        String mBusStopName;
+        String mBusStopType;
+        String mBusNodeID;
+        String mBusStopID;
+        String mGPSLatitude;
+        String mGPSLongtitude;
+        String mRoadName;
+        String mRoadNameAddress;
+        String mRouteCode;
+        String mTotalDistance;
+    }
+
+    public static final class RouteInfoItem extends RouteItem{
 
     }
 }
