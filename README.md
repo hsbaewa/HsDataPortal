@@ -1,11 +1,31 @@
 # HsDataPortal
 
-[![](https://jitpack.io/v/hsbaewa/HsDataPortal.svg)](https://jitpack.io/#hsbaewa/HsDataPortal)
+
 
 정부 공공 데이터 포털(http://www.data.go.kr)에서 대전 버스 정보 API를 참조하여 쉽게 사용할 수 있도록 제작된 라이브러리 입니다.
 
 자세한 사항은 아래의 링크를 참고하세요.
 http://www.data.go.kr/dataset/3034842/openapi.do
+
+
+###사용법
+[![](https://jitpack.io/v/hsbaewa/HsDataPortal.svg)](https://jitpack.io/#hsbaewa/HsDataPortal)
+1. root수준의 build.gradle에서 "allprojects"안에 아래와같이 추가
+<pre><code>
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+</pre></code>
+
+2. app 수준의 build.gradle의 "dependencies"안에 아래와 같이 추가
+<pre><code>
+dependencies {
+    compile 'com.github.hsbaewa:HsDataPortal:0.0.1'
+}
+</pre></code>
 
 
 
