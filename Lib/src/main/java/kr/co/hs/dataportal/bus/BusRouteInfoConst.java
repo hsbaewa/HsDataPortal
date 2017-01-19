@@ -23,7 +23,7 @@ public interface BusRouteInfoConst {
     String GPS_LONGTITUDE = "GPS_LONG";
     String ROAD_NAME = "ROAD_NM";                       //도로명
     String ROAD_NAME_ADDRESS = "ROAD_NM_ADDR";          //도로명주소
-    String ROUTE_CODE = "ROUTE_CD";                     //노선id
+//    String ROUTE_CODE = "ROUTE_CD";                     //노선id
     String TOTAL_DIST = "TOTAL_DIST";                   //누적거리
 
 

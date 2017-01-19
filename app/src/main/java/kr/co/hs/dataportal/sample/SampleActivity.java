@@ -8,11 +8,13 @@ import android.util.Log;
 import org.xml.sax.SAXException;
 
 import java.util.List;
+import java.util.concurrent.CyclicBarrier;
 
 
 import kr.co.hs.app.HsActivity;
 import kr.co.hs.dataportal.Api;
 import kr.co.hs.dataportal.bus.StationInfo;
+import kr.co.hs.dataportal.database.DBConnector;
 import kr.co.hs.util.Logger;
 
 /**
@@ -29,8 +31,30 @@ public class SampleActivity extends HsActivity implements Api.OnStartDocumentLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mStationInfo = new StationInfo("QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D" , StationInfo.OPERATION_STATION_BY_STOP_ID, "8001378");
-        mStationInfo.request(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                String key = "QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D";
+
+                try {
+                    int cnt = DBConnector.getInstance().initBusCompInfoDB(getContext(), key);
+
+                    cnt = DBConnector.getInstance().initBusRegInfoDB(getContext(), key);
+
+                    cnt = DBConnector.getInstance().initBusStationByRouteDB(getContext(), key);
+
+                    cnt = DBConnector.getInstance().initRouteInfoDB(getContext(), key);
+
+                    Logger.d("a");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
+
     }
 
     @Override

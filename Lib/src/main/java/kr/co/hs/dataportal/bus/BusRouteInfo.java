@@ -130,7 +130,7 @@ public class BusRouteInfo<T extends RouteItem> extends Api<T, BusRouteInfo> impl
                 }
                 break;
             }
-            case ROUTE_CODE:{
+            case ROUTE_CD:{
                 mCurrentItem.setRouteCode(value);
                 break;
             }
