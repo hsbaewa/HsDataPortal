@@ -7,12 +7,18 @@ import android.util.Log;
 
 import org.xml.sax.SAXException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CyclicBarrier;
 
 
 import kr.co.hs.app.HsActivity;
 import kr.co.hs.dataportal.Api;
+import kr.co.hs.dataportal.bus.BusCompInfo;
+import kr.co.hs.dataportal.bus.BusCompInfoItem;
 import kr.co.hs.dataportal.bus.StationInfo;
 import kr.co.hs.dataportal.database.DBConnector;
 import kr.co.hs.util.Logger;
@@ -34,19 +40,12 @@ public class SampleActivity extends HsActivity implements Api.OnStartDocumentLis
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-                String key = "QA1FldXgZSQN6c39GVaQMSbNFt1%2FKmzBbNCASfVTQpm1nILn8d4ws%2BnjKxQoyaYl8rW%2BKBw0hvPGRtRCJhA6Dg%3D%3D";
-
                 try {
-                    int cnt = DBConnector.getInstance().initBusCompInfoDB(getContext(), key);
 
-                    cnt = DBConnector.getInstance().initBusRegInfoDB(getContext(), key);
 
-                    cnt = DBConnector.getInstance().initBusStationByRouteDB(getContext(), key);
+//                    InputStream inputStream = getApplicationContext().getAssets().open("BusCompInfo.json");
+//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-                    cnt = DBConnector.getInstance().initRouteInfoDB(getContext(), key);
-
-                    Logger.d("a");
 
                 } catch (Exception e) {
                     e.printStackTrace();

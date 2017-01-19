@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,6 +107,41 @@ public class DBConnector {
         return nCnt;
     }
 
+    public int initBusCompInfoDB(Context context, JSONArray jsonArray){
+        clearBusCompInfoDB(context);
+
+        int nCnt = 0;
+
+        DBHelper helper = new DBHelper(context);
+        SQLiteDatabase database = helper.getWritableDatabase();
+
+        try{
+            for(int i=0;i<jsonArray.size();i++){
+                JSONObject object = (JSONObject) jsonArray.get(i);
+                ContentValues cv = new ContentValues();
+                cv.put(BusCompInfoConst.ADDRESS, (String) object.get(BusCompInfoConst.ADDRESS));
+                cv.put(BusCompInfoConst.COMPANY_CODE, (String) object.get(BusCompInfoConst.COMPANY_CODE));
+                cv.put(BusCompInfoConst.COMPANY_NAME, (String) object.get(BusCompInfoConst.COMPANY_NAME));
+                cv.put(BusCompInfoConst.TELEPHONE_NUMBER, (String) object.get(BusCompInfoConst.TELEPHONE_NUMBER));
+                try{
+                    database.insertOrThrow(BusCompInfoConst.OPERATION_BUS_COMPANY_INFO, null, cv);
+                    nCnt++;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(database != null && database.isOpen())
+                database.close();
+
+            if(helper != null)
+                helper.close();
+        }
+        return nCnt;
+    }
+
 
 
     public int clearBusStationByRouteDB(Context context){
@@ -169,6 +207,50 @@ public class DBConnector {
                     e.printStackTrace();
                 }
             }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(database != null && database.isOpen())
+                database.close();
+
+            if(helper != null)
+                helper.close();
+        }
+        return nCnt;
+    }
+
+    public int initBusStationByRouteDB(Context context, JSONArray jsonArray){
+        clearBusCompInfoDB(context);
+
+        int nCnt = 0;
+
+        DBHelper helper = new DBHelper(context);
+        SQLiteDatabase database = helper.getWritableDatabase();
+
+        try{
+            for(int i=0;i<jsonArray.size();i++){
+                JSONObject object = (JSONObject) jsonArray.get(i);
+                ContentValues cv = new ContentValues();
+                cv.put(BusRouteInfoConst.BUSSTOP_ENG_NAME, (String) object.get(BusRouteInfoConst.BUSSTOP_ENG_NAME));
+                cv.put(BusRouteInfoConst.BUSSTOP_NAME, (String) object.get(BusRouteInfoConst.BUSSTOP_NAME));
+                cv.put(BusRouteInfoConst.BUSSTOP_TYPE, (String) object.get(BusRouteInfoConst.BUSSTOP_TYPE));
+                cv.put(BusRouteInfoConst.BUS_NODE_ID, (String) object.get(BusRouteInfoConst.BUS_NODE_ID));
+                cv.put(BusRouteInfoConst.BUS_STOP_ID, (String) object.get(BusRouteInfoConst.BUS_STOP_ID));
+                cv.put(BusRouteInfoConst.GPS_LATITUDE, (String) object.get(BusRouteInfoConst.GPS_LATITUDE));
+                cv.put(BusRouteInfoConst.GPS_LONGTITUDE, (String) object.get(BusRouteInfoConst.GPS_LONGTITUDE));
+                cv.put(BusRouteInfoConst.ROAD_NAME, (String) object.get(BusRouteInfoConst.ROAD_NAME));
+                cv.put(BusRouteInfoConst.ROAD_NAME_ADDRESS, (String) object.get(BusRouteInfoConst.ROAD_NAME_ADDRESS));
+                cv.put(BusRouteInfoConst.ROUTE_CD, (String) object.get(BusRouteInfoConst.ROUTE_CD));
+                cv.put(BusRouteInfoConst.TOTAL_DIST, (String) object.get(BusRouteInfoConst.TOTAL_DIST));
+
+                try{
+                    database.insertOrThrow(BusRouteInfoConst.OPERATION_STATION_BY_ROUTE_ALL, null, cv);
+                    nCnt++;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -274,6 +356,66 @@ public class DBConnector {
         return nCnt;
     }
 
+    public int initRouteInfoDB(Context context, JSONArray jsonArray){
+        clearBusCompInfoDB(context);
+
+        int nCnt = 0;
+
+        DBHelper helper = new DBHelper(context);
+        SQLiteDatabase database = helper.getWritableDatabase();
+
+        try{
+            for(int i=0;i<jsonArray.size();i++){
+                JSONObject object = (JSONObject) jsonArray.get(i);
+
+                ContentValues cv = new ContentValues();
+                cv.put(BusRouteInfoConst.ALLO_INTERVAL, (String) object.get(BusRouteInfoConst.ALLO_INTERVAL));
+                cv.put(BusRouteInfoConst.ALLO_INTERVAL_SAT, (String) object.get(BusRouteInfoConst.ALLO_INTERVAL_SAT));
+                cv.put(BusRouteInfoConst.ALLO_INTERVAL_SUN, (String) object.get(BusRouteInfoConst.ALLO_INTERVAL_SUN));
+                cv.put(BusRouteInfoConst.BUSSTOP_COUNT, (String) object.get(BusRouteInfoConst.BUSSTOP_COUNT));
+                cv.put(BusRouteInfoConst.END_NODE_ID, (String) object.get(BusRouteInfoConst.END_NODE_ID));
+                cv.put(BusRouteInfoConst.END_STOP_ID, (String) object.get(BusRouteInfoConst.END_STOP_ID));
+                cv.put(BusRouteInfoConst.ORIGIN_END, (String) object.get(BusRouteInfoConst.ORIGIN_END));
+                cv.put(BusRouteInfoConst.ORIGIN_END_SAT, (String) object.get(BusRouteInfoConst.ORIGIN_END_SAT));
+                cv.put(BusRouteInfoConst.ORIGIN_END_SUN, (String) object.get(BusRouteInfoConst.ORIGIN_END_SUN));
+                cv.put(BusRouteInfoConst.ORIGIN_START, (String) object.get(BusRouteInfoConst.ORIGIN_START));
+                cv.put(BusRouteInfoConst.ORIGIN_START_SAT, (String) object.get(BusRouteInfoConst.ORIGIN_START_SAT));
+                cv.put(BusRouteInfoConst.ORIGIN_START_SUN, (String) object.get(BusRouteInfoConst.ORIGIN_START_SUN));
+                cv.put(BusRouteInfoConst.ROUTE_CD, (String) object.get(BusRouteInfoConst.ROUTE_CD));
+                cv.put(BusRouteInfoConst.ROUTE_NO, (String) object.get(BusRouteInfoConst.ROUTE_NO));
+                cv.put(BusRouteInfoConst.ROUTE_TP, (String) object.get(BusRouteInfoConst.ROUTE_TP));
+                cv.put(BusRouteInfoConst.RUN_DIST_HALF, (String) object.get(BusRouteInfoConst.RUN_DIST_HALF));
+                cv.put(BusRouteInfoConst.RUN_TM, (String) object.get(BusRouteInfoConst.RUN_TM));
+                cv.put(BusRouteInfoConst.START_NODE_ID, (String) object.get(BusRouteInfoConst.START_NODE_ID));
+                cv.put(BusRouteInfoConst.START_STOP_ID, (String) object.get(BusRouteInfoConst.START_STOP_ID));
+                cv.put(BusRouteInfoConst.TURN_END, (String) object.get(BusRouteInfoConst.TURN_END));
+                cv.put(BusRouteInfoConst.TURN_END_SAT, (String) object.get(BusRouteInfoConst.TURN_END_SAT));
+                cv.put(BusRouteInfoConst.TURN_END_SUN, (String) object.get(BusRouteInfoConst.TURN_END_SUN));
+                cv.put(BusRouteInfoConst.TURN_NODE_ID, (String) object.get(BusRouteInfoConst.TURN_NODE_ID));
+                cv.put(BusRouteInfoConst.TURN_START, (String) object.get(BusRouteInfoConst.TURN_START));
+                cv.put(BusRouteInfoConst.TURN_START_SAT, (String) object.get(BusRouteInfoConst.TURN_START_SAT));
+                cv.put(BusRouteInfoConst.TURN_START_SUN, (String) object.get(BusRouteInfoConst.TURN_START_SUN));
+                cv.put(BusRouteInfoConst.TURN_STOP_ID, (String) object.get(BusRouteInfoConst.TURN_STOP_ID));
+
+                try{
+                    database.insertOrThrow(BusRouteInfoConst.OPERATION_ROUTE_INFO_ALL, null, cv);
+                    nCnt++;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(database != null && database.isOpen())
+                database.close();
+
+            if(helper != null)
+                helper.close();
+        }
+        return nCnt;
+    }
+
 
     public int clearBusRegInfoDB(Context context){
         DBHelper helper = new DBHelper(context);
@@ -332,6 +474,43 @@ public class DBConnector {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(database != null && database.isOpen())
+                database.close();
+
+            if(helper != null)
+                helper.close();
+        }
+        return nCnt;
+    }
+
+    public int initBusRegInfoDB(Context context, JSONArray jsonArray){
+        clearBusCompInfoDB(context);
+
+        int nCnt = 0;
+
+        DBHelper helper = new DBHelper(context);
+        SQLiteDatabase database = helper.getWritableDatabase();
+
+        try{
+            for(int i=0;i<jsonArray.size();i++){
+                JSONObject object = (JSONObject) jsonArray.get(i);
+
+                ContentValues cv = new ContentValues();
+                cv.put(BusRegInfoConst.BUS_TYPE, (String) object.get(BusRegInfoConst.BUS_TYPE));
+                cv.put(BusRegInfoConst.CAR_REG_NO, (String) object.get(BusRegInfoConst.CAR_REG_NO));
+                cv.put(BusRegInfoConst.CHARACTER, (String) object.get(BusRegInfoConst.CHARACTER));
+                cv.put(BusRegInfoConst.COMP_CD, (String) object.get(BusRegInfoConst.COMP_CD));
+                try{
+                    database.insertOrThrow(BusRegInfoConst.OPERATION_BUS_REGISTINFO_ALL, null, cv);
+                    nCnt++;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         }catch (Exception e){
             e.printStackTrace();
