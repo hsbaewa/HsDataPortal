@@ -9,7 +9,7 @@ import kr.co.hs.dataportal.Api;
  * Created by Bae on 2017-01-18.
  */
 
-public class BusRegInfo extends Api implements BusRegInfoConst{
+public class BusRegInfo extends Api<BusRegInfoItem, BusRegInfo> implements BusRegInfoConst{
     private String mOperation;
     private int mReqPage;
     private String mRouteID;
@@ -101,52 +101,4 @@ public class BusRegInfo extends Api implements BusRegInfoConst{
         return mRouteID;
     }
 
-
-    public static class BusRegInfoItem extends Item{
-        String mBusType;
-        String mCarRegistNumber;
-        String mCharacter;
-        String mCompanyNumber;
-        String mRouteCode;
-
-        public String getBusType() {
-            return mBusType;
-        }
-
-        public void setBusType(String busType) {
-            mBusType = busType;
-        }
-
-        public String getCarRegistNumber() {
-            return mCarRegistNumber;
-        }
-
-        public void setCarRegistNumber(String carRegistNumber) {
-            mCarRegistNumber = carRegistNumber;
-        }
-
-        public String getCharacter() {
-            return mCharacter;
-        }
-
-        public void setCharacter(String character) {
-            mCharacter = character;
-        }
-
-        public String getCompanyNumber() {
-            return mCompanyNumber;
-        }
-
-        public void setCompanyNumber(String companyNumber) {
-            mCompanyNumber = companyNumber;
-        }
-
-        public String getRouteCode() {
-            return mRouteCode;
-        }
-
-        public void setRouteCode(String routeCode) {
-            mRouteCode = routeCode;
-        }
-    }
 }

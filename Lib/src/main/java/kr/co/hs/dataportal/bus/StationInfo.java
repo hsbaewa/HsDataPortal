@@ -9,7 +9,7 @@ import kr.co.hs.dataportal.Api;
  * Created by Bae on 2017-01-18.
  */
 
-public class StationInfo extends Api implements StationInfoConst{
+public class StationInfo extends Api<StationInfoItem, StationInfo> implements StationInfoConst{
     private String mOperation;
     private String mARSID;
     private String mNodeID;
@@ -119,88 +119,4 @@ public class StationInfo extends Api implements StationInfoConst{
         return mNodeID;
     }
 
-
-    public static class StationInfoItem extends Item{
-        String mBusStopID;
-        String mBusStopEngName;
-        String mBusStopName;
-        String mBusNodeID;
-        String mLatitude;
-        String mLongtitude;
-        String mRoadName;
-        String mRoadNameAddress;
-        String mRouteNumber;
-
-        public String getBusStopID() {
-            return mBusStopID;
-        }
-
-        public void setBusStopID(String busStopID) {
-            mBusStopID = busStopID;
-        }
-
-        public String getBusStopEngName() {
-            return mBusStopEngName;
-        }
-
-        public void setBusStopEngName(String busStopEngName) {
-            mBusStopEngName = busStopEngName;
-        }
-
-        public String getBusStopName() {
-            return mBusStopName;
-        }
-
-        public void setBusStopName(String busStopName) {
-            mBusStopName = busStopName;
-        }
-
-        public String getBusNodeID() {
-            return mBusNodeID;
-        }
-
-        public void setBusNodeID(String busNodeID) {
-            mBusNodeID = busNodeID;
-        }
-
-        public String getLatitude() {
-            return mLatitude;
-        }
-
-        public void setLatitude(String latitude) {
-            mLatitude = latitude;
-        }
-
-        public String getLongtitude() {
-            return mLongtitude;
-        }
-
-        public void setLongtitude(String longtitude) {
-            mLongtitude = longtitude;
-        }
-
-        public String getRoadName() {
-            return mRoadName;
-        }
-
-        public void setRoadName(String roadName) {
-            mRoadName = roadName;
-        }
-
-        public String getRoadNameAddress() {
-            return mRoadNameAddress;
-        }
-
-        public void setRoadNameAddress(String roadNameAddress) {
-            mRoadNameAddress = roadNameAddress;
-        }
-
-        public String getRouteNumber() {
-            return mRouteNumber;
-        }
-
-        public void setRouteNumber(String routeNumber) {
-            mRouteNumber = routeNumber;
-        }
-    }
 }

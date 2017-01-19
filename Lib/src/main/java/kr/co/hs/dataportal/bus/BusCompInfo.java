@@ -11,11 +11,11 @@ import kr.co.hs.dataportal.Api;
  * 패키지명 : kr.co.hs.dataportal
  */
 
-public class BusCompInfo<I extends BusCompInfo.Item> extends Api implements BusCompInfoConst{
+public class BusCompInfo extends Api<BusCompInfoItem, BusCompInfo> implements BusCompInfoConst{
     private int mNReqestPage = 0;
 
-    private Item mCurrentItem = null;
-    private List<Item> mItems;
+    private BusCompInfoItem mCurrentItem = null;
+    private List<BusCompInfoItem> mItems;
 
     public BusCompInfo(String strAPIKey, int NReqestPage) {
         super(strAPIKey);
@@ -35,7 +35,7 @@ public class BusCompInfo<I extends BusCompInfo.Item> extends Api implements BusC
         return url;
     }
 
-    public List<Item> getItems() {
+    public List<BusCompInfoItem> getItems() {
         return mItems;
     }
 
@@ -43,7 +43,7 @@ public class BusCompInfo<I extends BusCompInfo.Item> extends Api implements BusC
     public void startElement(String qName) {
         switch (qName){
             case ITEM_LIST:{
-                mCurrentItem = new Item();
+                mCurrentItem = new BusCompInfoItem();
                 break;
             }
         }
@@ -75,45 +75,4 @@ public class BusCompInfo<I extends BusCompInfo.Item> extends Api implements BusC
         }
     }
 
-    public static final class Item extends Api.Item{
-        private String mAddress;
-        private String mCompanyCode;
-        private String mCompanyName;
-        private String mTel;
-
-        public Item() {
-        }
-
-        public String getAddress() {
-            return mAddress;
-        }
-
-        public String getCompanyCode() {
-            return mCompanyCode;
-        }
-
-        public String getCompanyName() {
-            return mCompanyName;
-        }
-
-        public String getTel() {
-            return mTel;
-        }
-
-        public void setAddress(String address) {
-            mAddress = address;
-        }
-
-        public void setCompanyCode(String companyCode) {
-            mCompanyCode = companyCode;
-        }
-
-        public void setCompanyName(String companyName) {
-            mCompanyName = companyName;
-        }
-
-        public void setTel(String tel) {
-            mTel = tel;
-        }
-    }
 }

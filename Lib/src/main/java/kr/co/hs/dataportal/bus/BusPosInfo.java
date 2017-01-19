@@ -9,7 +9,7 @@ import kr.co.hs.dataportal.Api;
  * Created by Bae on 2017-01-18.
  */
 
-public class BusPosInfo extends Api implements BusPosInfoConst{
+public class BusPosInfo extends Api<BusPosInfoItem, BusPosInfo> implements BusPosInfoConst{
 
     private String mBusRouteCode;
     private List<BusPosInfoItem> mItems;
@@ -106,105 +106,4 @@ public class BusPosInfo extends Api implements BusPosInfoConst{
         return mBusRouteCode;
     }
 
-    public static class BusPosInfoItem extends Item{
-        String mEventTime;
-        String mBusNodeID;
-        String mBusStopID;
-        String mDir;
-        String mEventCode;
-        String mLatitude;
-        String mLongtitude;
-        String mRouteCode;
-        String mStoreDate;
-        String mTotalDistance;
-        String mUDType;
-
-        public String getEventTime() {
-            return mEventTime;
-        }
-
-        public void setEventTime(String eventTime) {
-            mEventTime = eventTime;
-        }
-
-        public String getBusNodeID() {
-            return mBusNodeID;
-        }
-
-        public void setBusNodeID(String busNodeID) {
-            mBusNodeID = busNodeID;
-        }
-
-        public String getBusStopID() {
-            return mBusStopID;
-        }
-
-        public void setBusStopID(String busStopID) {
-            mBusStopID = busStopID;
-        }
-
-        public String getDir() {
-            return mDir;
-        }
-
-        public void setDir(String dir) {
-            mDir = dir;
-        }
-
-        public String getEventCode() {
-            return mEventCode;
-        }
-
-        public void setEventCode(String eventCode) {
-            mEventCode = eventCode;
-        }
-
-        public String getLatitude() {
-            return mLatitude;
-        }
-
-        public void setLatitude(String latitude) {
-            mLatitude = latitude;
-        }
-
-        public String getLongtitude() {
-            return mLongtitude;
-        }
-
-        public void setLongtitude(String longtitude) {
-            mLongtitude = longtitude;
-        }
-
-        public String getRouteCode() {
-            return mRouteCode;
-        }
-
-        public void setRouteCode(String routeCode) {
-            mRouteCode = routeCode;
-        }
-
-        public String getStoreDate() {
-            return mStoreDate;
-        }
-
-        public void setStoreDate(String storeDate) {
-            mStoreDate = storeDate;
-        }
-
-        public String getTotalDistance() {
-            return mTotalDistance;
-        }
-
-        public void setTotalDistance(String totalDistance) {
-            mTotalDistance = totalDistance;
-        }
-
-        public String getUDType() {
-            return mUDType;
-        }
-
-        public void setUDType(String UDType) {
-            mUDType = UDType;
-        }
-    }
 }

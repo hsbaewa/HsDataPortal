@@ -9,7 +9,7 @@ import kr.co.hs.dataportal.Api;
  * Created by Bae on 2017-01-17.
  */
 
-public class BusRouteInfo<T extends BusRouteInfo.RouteItem> extends Api implements BusRouteInfoConst{
+public class BusRouteInfo<T extends RouteItem> extends Api<T, BusRouteInfo> implements BusRouteInfoConst{
 
     private String mOperation;
     private int mReqPage;
@@ -311,18 +311,6 @@ public class BusRouteInfo<T extends BusRouteInfo.RouteItem> extends Api implemen
 
     public String getID() {
         return mID;
-    }
-
-    public static class RouteItem extends Item{
-        String mRouteCode;
-
-        public String getRouteCode() {
-            return mRouteCode;
-        }
-
-        public void setRouteCode(String routeCode) {
-            mRouteCode = routeCode;
-        }
     }
 
     public static final class StationByRouteItem extends RouteItem{
