@@ -39,6 +39,18 @@ dependencies {
 
 
 
+다음과 같이 비동기로 요청할 수 있습니다.
+<pre><code>
+mStationInfo = new StationInfo("API 키" , StationInfo.OPERATION_STATION_BY_STOP_ID, "8001378");
+        mStationInfo.request(new Api.OnEndDocumentListener() {
+            @Override
+            public void endDocument() {
+                List<StationInfo> item = mStationInfo.getItems();
+            }
+        });
+</code></pre>
+
+
 
 ##1. 정류소정보조회 서비스
 <pre><code>
